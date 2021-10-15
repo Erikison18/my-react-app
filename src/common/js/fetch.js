@@ -1,7 +1,7 @@
 import qs from 'qs';
 
 async function getData(url = '', data = {}, header) {
-    let str = qs.stringify(data);
+    let str = qs.stringify(data, { encode: false });
     // Default options are marked with *
     const response = await fetch(`${url}?${str}`, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.

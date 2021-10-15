@@ -10,6 +10,7 @@ const Api = lazy(() => import('../components/api'));
 const Hook = lazy(() => import('../components/hook'));
 const Faq = lazy(() => import('../components/faq'));
 const Redux = lazy(() => import('../components/redux'));
+const Strategy = lazy(() => import('../components/strategy'));
 
 class About extends React.Component{
     render() {
@@ -30,6 +31,7 @@ const BasicRoute = () => (
                 <Route exact path="/faq" component={Faq}/>
                 <Route exact path="/redux" component={Redux}/>
                 <Route exact path="/about" component={About}/>
+                <Route exact path="/strategy" component={Strategy}/>
             </Switch>
         </Suspense>
     </HashRouter>

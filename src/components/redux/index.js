@@ -17,7 +17,7 @@ function App() {
                 setCatData(catData);
             });
         });
-        let catListDataNew = await getData('/facts/random', { type: "cat", amount: 6 })
+        let catListDataNew = await getData('https://cat-fact.herokuapp.com/facts/random', { type: "cat", amount: 6 })
         // console.log("catListData", catListData);
         console.log("catListDataNew--", catListDataNew);
         setCatListData(catListDataNew);
@@ -34,7 +34,7 @@ function App() {
     async function onClick() {
         // console.log(list);
         setLoadingData(true)
-        let getListPatch = await getData('/facts/random', { animal_type: "cat", amount: 4 })
+        let getListPatch = await getData('https://cat-fact.herokuapp.com/facts/random', { animal_type: "cat", amount: 4 })
         console.log(getListPatch);
         await dispatch({
             type: 'getList',
