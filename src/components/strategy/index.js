@@ -17,10 +17,10 @@ function App() {
             fmt: "json",
             size: 100,
             page: 1,
-            order: "score",
+            order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return
             category: "stock",
             count: "1,1",
-            date_length: "1826,50000",
+            date_length: "3650,50000",
             annual_return: "1,100000000",
             asc: 0,
             _: 1634265880112,
