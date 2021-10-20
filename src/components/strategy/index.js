@@ -15,19 +15,24 @@ function App() {
         setLoadingData(true)
         let getListPatch = await getData('/stock/strategy', {
             fmt: "json",
-            size: 100,
+            size: 200,
             page: 1,
             order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return
             category: "stock",
             count: "1,1",
             date_length: "3650,50000",
-            annual_return: "1,100000000",
+            annual_return: "0.5,100000000",
             asc: 0,
             _: 1634265880112,
         });
+        let filterData = getListPatch.data.strategy_list.filter((item)=> {
+            console.log(item);
+            return item.score > 60 && item.return_score > 100 && item.real_score > 80 && item.risk_score > 30 && item.stability_score > 30;
+            // && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 60;
+        });
         await dispatch({
             type: 'getList',
-            payload: getListPatch.data.strategy_list
+            payload: filterData
         });
         setLoadingData(false)
     }
@@ -58,7 +63,7 @@ function App() {
             key: 'start_date',
           },
         {
-            title: '年化',
+            title: '年化率',
             dataIndex: 'annual_return',
             key: 'annual_return',
         },
@@ -86,6 +91,16 @@ function App() {
             title: '稳定性分数',
             dataIndex: 'stability_score',
             key: 'stability_score',
+        },
+        {
+            title: '实盘分数',
+            dataIndex: 'real_score',
+            key: 'real_score',
+        },
+        {
+            title: '收益分数',
+            dataIndex: 'return_score',
+            key: 'return_score',
         },
     ];
 
