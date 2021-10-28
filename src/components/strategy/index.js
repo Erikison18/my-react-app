@@ -27,7 +27,7 @@ function App() {
         });
         let filterData = getListPatch.data.strategy_list.filter((item)=> {
             console.log(item);
-            return item.score > 60 && item.return_score > 100 && item.real_score > 80 && item.risk_score > 30 && item.stability_score > 30;
+            return item.score > 60 && item.return_score > 90 && item.real_score > 80 && item.risk_score > 30 && item.stability_score > 30;
             // && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 60;
         });
         await dispatch({
@@ -47,6 +47,7 @@ function App() {
           title: 'ID',
           dataIndex: 'id',
           key: 'id',
+          width: 80,
           render: (text) => {
             return <a href={`https://guorn.com/stock/strategy?sid=${text}`} target="view_window">链接</a>;
           },
@@ -56,6 +57,7 @@ function App() {
           title: '总分',
           dataIndex: 'score',
           key: 'score',
+          width: 80,
         },
         {
             title: '回测起始日期',
@@ -107,7 +109,7 @@ function App() {
     return <div>
         <Button onClick={onClick}>onclick fetch</Button>
         <Spin spinning={loading}>
-            <Table dataSource={list} columns={columns} pagination={{pageSize: 100}}/>
+            <Table dataSource={list} columns={columns} pagination={{pageSize: 100}} scroll={{ y: 800 }}/>
         </Spin>
     </div>
 }
