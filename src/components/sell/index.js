@@ -13,22 +13,30 @@ function App() {
     const dispatch = useDispatch();
     async function onClick() {
         setLoadingData(true)
-        let getListPatch = await getData('/stock/strategy', {
+        let getListPatch = await getData('/stock/strategy/sell', {
             fmt: "json",
-            size: 200,
-            page: 1,
-            order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return
-            category: "stock",
-            count: "1,1",
-            date_length: "1825,50000",
-            annual_return: "0.5,100000000",
+            all: 1,
+            uid: "null",
+            size: 1000000,
+            page: "profile",
+            name_only: 1,
+            order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return,live_annual_return
             asc: 0,
-            _: 1634265880112,
+            _: 1636335971777,
         });
-        let filterData = getListPatch.data.strategy_list.filter((item)=> {
+        let filterData = getListPatch.data.filter((item)=> {
             console.log(item);
-            return item.score > 60 && item.return_score > 90 && item.real_score > 80 && item.risk_score > 30 && item.stability_score > 30;
-            // && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 60;
+            let myReturn = false;
+            let d = new Date(item.start_date);
+            let dt = new Date("2010/01/01");
+            if (d.getTime() > dt.getTime()) {
+                myReturn = false;
+            } else if (item.score > 65 && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 50) {
+                myReturn = true;
+            } else {
+                myReturn = false;
+            }
+            return myReturn;
         });
         await dispatch({
             type: 'getList',
@@ -80,29 +88,39 @@ function App() {
             key: 'sharpe_ratio',
         },
         {
+            title: '实盘起始日期',
+            dataIndex: 'real_date',
+            key: 'real_date',
+        },
+        {
             title: '实盘收益',
             dataIndex: 'real_return',
             key: 'real_return',
         },
         {
-            title: '抗风险分数',
-            dataIndex: 'risk_score',
-            key: 'risk_score',
+            title: '实盘年化率',
+            dataIndex: 'live_annual_return',
+            key: 'live_annual_return',
         },
         {
-            title: '稳定性分数',
-            dataIndex: 'stability_score',
-            key: 'stability_score',
+            title: '实盘超额收益',
+            dataIndex: 'live_excess_return',
+            key: 'live_excess_return',
         },
         {
-            title: '实盘分数',
-            dataIndex: 'real_score',
-            key: 'real_score',
+            title: '起势分数',
+            dataIndex: 'trend_score',
+            key: 'trend_score',
         },
         {
-            title: '收益分数',
-            dataIndex: 'return_score',
-            key: 'return_score',
+            title: '最近一年收益',
+            dataIndex: 'year_return',
+            key: 'year_return',
+        },
+        {
+            title: '持仓股票数',
+            dataIndex: 'cnt',
+            key: 'cnt',
         },
     ];
 
