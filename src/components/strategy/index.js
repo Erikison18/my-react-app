@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getData } from '../../common/js/fetch'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Spin, Table } from 'antd';
+import { getDaysBetween } from "../../common/js/utils";
 import "./index.scss"
 
 function App() {
@@ -26,9 +27,14 @@ function App() {
             _: 1634265880112,
         });
         let filterData = getListPatch.data.strategy_list.filter((item)=> {
-            console.log(item);
+            // console.log(item);
+            let deltaDay = getDaysBetween(item.upd_date).toFixed(0);
+            let realAR = ((Math.pow((parseInt(item.real_return) / 100) + 1, 365 / deltaDay) - 1) * 100).toFixed(2) + "%";
+            item.deltaDay = deltaDay;
+            item.realAR = realAR;
             return item.score > 60 && item.return_score > 90 && item.real_score > 80 && item.risk_score > 30 && item.stability_score > 30;
             // && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 60;
+            // && item.deltaDay > 365;
         });
         await dispatch({
             type: 'getList',
@@ -85,6 +91,16 @@ function App() {
             key: 'real_return',
         },
         {
+            title: '实盘天数',
+            dataIndex: 'deltaDay',
+            key: 'start_date',
+        },
+        {
+            title: '实盘年化',
+            dataIndex: 'realAR',
+            key: 'start_date',
+        },
+        {
             title: '抗风险分数',
             dataIndex: 'risk_score',
             key: 'risk_score',
@@ -109,7 +125,7 @@ function App() {
     return <div>
         <Button onClick={onClick}>onclick fetch</Button>
         <Spin spinning={loading}>
-            <Table dataSource={list} columns={columns} pagination={{pageSize: 100}} scroll={{ y: 800 }}/>
+            <Table dataSource={list} columns={columns} rowKey={columns => columns.id} pagination={{pageSize: 100}} scroll={{ y: 800 }}/>
         </Spin>
     </div>
 }

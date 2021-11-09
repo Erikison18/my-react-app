@@ -88,9 +88,9 @@ function App() {
             key: 'sharpe_ratio',
         },
         {
-            title: '实盘起始日期',
-            dataIndex: 'real_date',
-            key: 'real_date',
+            title: '实盘天数',
+            dataIndex: 'real_days',
+            key: 'real_days',
         },
         {
             title: '实盘收益',
@@ -127,7 +127,7 @@ function App() {
     return <div>
         <Button onClick={onClick}>onclick fetch</Button>
         <Spin spinning={loading}>
-            <Table dataSource={list} columns={columns} pagination={{pageSize: 100}} scroll={{ y: 800 }}/>
+            <Table dataSource={list} columns={columns} rowKey={columns => columns.id} pagination={{pageSize: 100}} scroll={{ y: 800 }}/>
         </Spin>
     </div>
 }
