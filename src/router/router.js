@@ -13,6 +13,7 @@ const Redux = lazy(() => import('../components/redux'));
 const Strategy = lazy(() => import('../components/strategy'));
 const Sell = lazy(() => import('../components/sell'));
 const TradeHistory = lazy(() => import('../components/tradeHistory'));
+const Instruction = lazy(() => import('../components/instruction'));
 
 class About extends React.Component{
     render() {
@@ -36,6 +37,7 @@ const BasicRoute = () => (
                 <Route exact path="/strategy" component={Strategy}/>
                 <Route exact path="/sell" component={Sell}/>
                 <Route exact path="/tradeHistory" component={TradeHistory}/>
+                <Route exact path="/instruction" component={Instruction}/>
             </Switch>
         </Suspense>
     </HashRouter>

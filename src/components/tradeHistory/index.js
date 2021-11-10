@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useState } from 'react'
 import { getData } from '../../common/js/fetch'
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,12 +12,15 @@ function App() {
     const list = useSelector(state => {
         return state.list
     });
+    const list1 = useSelector(state => {
+        return state.list1
+    });
     const dispatch = useDispatch();
     async function onClick() {
         setLoadingData(true)
         let getListPatch = await getData('/stock/strategy', {
             fmt: "json",
-            sid: "963.R.175377259140843",
+            sid: "6005.R.142948956507590", //963.R.175377259140843、6005.R.151273379239841、6005.R.142948956507590、5598.R.96574918314022、1474054.R.221587820465062、515577.R.166374950966612
             _: 1636450021989,
         });
         let meas_data = getListPatch.data.trade_history.sheet_data.meas_data;
@@ -40,12 +44,121 @@ function App() {
             // item.realAR = realAR;
             return once;
         });
+
+        let holdings_meas = getListPatch.data.holdings.sheet_data.meas_data;
+        let holdings_col = getListPatch.data.holdings.sheet_data.col;
+        let daily_chart = getListPatch.data.daily_chart.sheet_data.meas_data[1];
+        let len = daily_chart.length;
+        let holdingsData = [];
+        for (let index = 0; index < holdings_meas[0].length; index++) {
+            let holding = {
+                index: index + 1,
+                date: getListPatch.data.holdings_date,
+                Position: holdings_meas[2][index],
+                IncreaseRatio: holdings_meas[3][index],
+                BuyPrice: holdings_col[0].rng[index],
+                EndPrice: holdings_col[1].rng[index],
+                amount: holdings_meas[2][index] * 1000000 / holdings_col[1].rng[index],
+                calRatio: (holdings_col[1].rng[index] / holdings_col[0].rng[index]) - 1,
+                myRatio1: daily_chart[len - 1],
+                myRatio2: daily_chart[len - 2],
+                myRatio3: daily_chart[len - 3],
+                myRatio4: daily_chart[len - 4],
+            }
+            holdingsData.push(holding);
+        }
+        console.log(holdingsData);
+
         await dispatch({
             type: 'getList',
             payload: filterData
         });
+        await dispatch({
+            type: 'getList1',
+            payload: holdingsData
+        });
         setLoadingData(false)
     }
+    const columns1 = [
+        {
+            title: '序号',
+            dataIndex: 'index',
+            key: 'index',
+        }, {
+            title: '日期',
+            dataIndex: 'date',
+            key: 'date',
+        }, {
+            title: '当前仓位',
+            dataIndex: 'Position',
+            key: 'Position',
+            render: (text) => {
+                return <span>{(text * 100).toFixed(4)}%</span>;
+            },
+        } , {
+            title: '累计涨幅',
+            dataIndex: 'IncreaseRatio',
+            key: 'IncreaseRatio',
+            render: (text) => {
+                return <span>{(text * 100).toFixed(4)}%</span>;
+            },
+        } , {
+            title: '计算涨幅',
+            dataIndex: 'calRatio',
+            key: 'calRatio',
+            render: (text) => {
+                return <span className="orange">{(text * 100).toFixed(4)}%</span>;
+            },
+        } , {
+            title: '收盘价股数',
+            dataIndex: 'amount',
+            key: 'amount',
+            render: (text) => {
+                return <span className="orange">{(text * 1).toFixed(2)}</span>;
+            },
+        }, {
+            title: '买入价格',
+            dataIndex: 'BuyPrice',
+            key: 'BuyPrice',
+            render: (text) => {
+                return <span>{(text * 1).toFixed(2)}</span>;
+            },
+        } , {
+            title: '最近收盘价',
+            dataIndex: 'EndPrice',
+            key: 'EndPrice',
+            render: (text) => {
+                return <span>{(text * 1).toFixed(2)}</span>;
+            },
+        } , {
+            title: '最近一日涨幅',
+            dataIndex: 'myRatio1',
+            key: 'myRatio1',
+            render: (text) => {
+                return <span>{(text * 100).toFixed(2)}%</span>;
+            },
+        } , {
+            title: '最近二日涨幅',
+            dataIndex: 'myRatio2',
+            key: 'myRatio2',
+            render: (text) => {
+                return <span>{(text * 100).toFixed(2)}%</span>;
+            },
+        } , {
+            title: '最近三日涨幅',
+            dataIndex: 'myRatio3',
+            key: 'myRatio3',
+            render: (text) => {
+                return <span>{(text * 100).toFixed(2)}%</span>;
+            },
+        } , {
+            title: '最近四日涨幅',
+            dataIndex: 'myRatio4',
+            key: 'myRatio4',
+            render: (text) => {
+                return <span>{(text * 100).toFixed(2)}%</span>;
+            },
+        }];
     const columns = [
         {
             title: '序号',
@@ -100,6 +213,9 @@ function App() {
     return <div>
         <Button onClick={onClick}>onclick fetch</Button>
         <Spin spinning={loading}>
+            <h2>持仓信息</h2>
+            <Table dataSource={list1} columns={columns1} rowKey={columns => columns.index} pagination={{pageSize: 100}} scroll={{ y: 800 }}/>
+            <h2>历史调仓</h2>
             <Table dataSource={list} columns={columns} rowKey={columns => columns.index} pagination={{pageSize: 10000}} scroll={{ y: 800 }}/>
         </Spin>
     </div>

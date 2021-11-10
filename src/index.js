@@ -54,6 +54,9 @@ class App extends React.Component {
                     <Menu.Item key="tradeHistory">
                         <a href="#/tradeHistory">tradeHistory</a>
                     </Menu.Item>
+                    <Menu.Item key="instruction">
+                        <a href="#/instruction">instruction</a>
+                    </Menu.Item>
                 </Menu>
                 <div className="page-content">
                     <Router />
