@@ -28,10 +28,11 @@ function App() {
             console.log(item);
             let myReturn = false;
             let d = new Date(item.start_date);
-            let dt = new Date("2010/01/01");
+            let dt = new Date("2011/10/01");
             if (d.getTime() > dt.getTime()) {
                 myReturn = false;
-            } else if (item.score > 65 && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 50) {
+            // } else if (item.score > 65 && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 50) {
+            } else if (parseInt(item.live_annual_return) > 90 && parseInt(item.annual_return) > 90) {
                 myReturn = true;
             } else {
                 myReturn = false;

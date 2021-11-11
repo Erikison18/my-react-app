@@ -20,7 +20,7 @@ function App() {
             page: 1,
             order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return
             category: "stock",
-            count: "1,1",
+            count: "1,3",
             date_length: "1825,50000",
             annual_return: "0.5,100000000",
             asc: 0,
@@ -32,9 +32,10 @@ function App() {
             let realAR = ((Math.pow((parseInt(item.real_return) / 100) + 1, 365 / deltaDay) - 1) * 100).toFixed(2) + "%";
             item.deltaDay = deltaDay;
             item.realAR = realAR;
-            return item.score > 60 && item.return_score > 90 && item.real_score > 80 && item.risk_score > 30 && item.stability_score > 30;
+            // return item.score > 60 && item.return_score > 90 && item.real_score > 80 && item.risk_score > 30 && item.stability_score > 30;
             // && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 60;
             // && item.deltaDay > 365;
+            return parseInt(item.realAR) > 100 && parseInt(item.annual_return) > 100;
         });
         await dispatch({
             type: 'getList',

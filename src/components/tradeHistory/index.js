@@ -20,8 +20,8 @@ function App() {
         setLoadingData(true)
         let getListPatch = await getData('/stock/strategy', {
             fmt: "json",
-            sid: "6005.R.142948956507590", //963.R.175377259140843、6005.R.151273379239841、6005.R.142948956507590、5598.R.96574918314022、1474054.R.221587820465062、515577.R.166374950966612
-            _: 1636450021989,
+            sid: "1474054.R.221587820465062", //963.R.175377259140843、6005.R.151273379239841、6005.R.142948956507590、5598.R.96574918314022、1474054.R.221587820465062、515577.R.166374950966612
+            _: 1636450021980,
         });
         let meas_data = getListPatch.data.trade_history.sheet_data.meas_data;
         let row = getListPatch.data.trade_history.sheet_data.row;
@@ -50,16 +50,41 @@ function App() {
         let daily_chart = getListPatch.data.daily_chart.sheet_data.meas_data[1];
         let len = daily_chart.length;
         let holdingsData = [];
+        let BuyPrice0 = holdings_col[0].rng[0];
+        let EndPrice0 = holdings_col[1].rng[0];
+        let calRatio0 = (holdings_col[1].rng[0] / holdings_col[0].rng[0]) - 1;
+        let BuyPrice1 = holdings_col[0].rng[1];
+        let EndPrice1 = holdings_col[1].rng[1];
+        let calRatio1 = (holdings_col[1].rng[1] / holdings_col[0].rng[1]) - 1;
+        console.log(`calRatio0=${calRatio0},calRatio1=${calRatio1}`);
+
         for (let index = 0; index < holdings_meas[0].length; index++) {
+            let amount = NaN;
+            let BuyPrice = NaN;
+            let EndPrice = NaN;
+            let calRatio = NaN;
+            let IncreaseRatio = holdings_meas[3][index];
+            if (IncreaseRatio >= calRatio0 - 0.0001 && IncreaseRatio <= calRatio0 + 0.0001) {
+                amount = holdings_meas[2][index] * 1000000 / BuyPrice0;
+                BuyPrice = BuyPrice0;
+                EndPrice = EndPrice0;
+                calRatio = calRatio0;
+            }
+            if (IncreaseRatio >= calRatio1 - 0.0001 && IncreaseRatio <= calRatio1 + 0.0001) {
+                amount = holdings_meas[2][index] * 1000000 / BuyPrice1;
+                BuyPrice = BuyPrice1;
+                EndPrice = EndPrice1;
+                calRatio = calRatio1;
+            }
             let holding = {
                 index: index + 1,
                 date: getListPatch.data.holdings_date,
                 Position: holdings_meas[2][index],
                 IncreaseRatio: holdings_meas[3][index],
-                BuyPrice: holdings_col[0].rng[index],
-                EndPrice: holdings_col[1].rng[index],
-                amount: holdings_meas[2][index] * 1000000 / holdings_col[1].rng[index],
-                calRatio: (holdings_col[1].rng[index] / holdings_col[0].rng[index]) - 1,
+                BuyPrice,
+                EndPrice,
+                amount,
+                calRatio,
                 myRatio1: daily_chart[len - 1],
                 myRatio2: daily_chart[len - 2],
                 myRatio3: daily_chart[len - 3],
