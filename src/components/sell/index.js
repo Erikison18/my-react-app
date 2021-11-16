@@ -28,11 +28,12 @@ function App() {
             console.log(item);
             let myReturn = false;
             let d = new Date(item.start_date);
-            let dt = new Date("2011/10/01");
+            let dt = new Date("2014/11/01");
             if (d.getTime() > dt.getTime()) {
                 myReturn = false;
-            // } else if (item.score > 65 && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 50) {
-            } else if (parseInt(item.live_annual_return) > 90 && parseInt(item.annual_return) > 90) {
+            // } else if (item.score > 65 && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 40) {
+            // } else if (item.score > 60) {
+            } else if (parseInt(item.live_annual_return) > 70 && parseInt(item.annual_return) > 70) {
                 myReturn = true;
             } else {
                 myReturn = false;
@@ -66,7 +67,9 @@ function App() {
           title: '总分',
           dataIndex: 'score',
           key: 'score',
-          width: 80,
+          render: (text) => {
+            return <span>{parseFloat(text).toFixed(2)}</span>;
+          },
         },
         {
             title: '回测起始日期',
@@ -119,10 +122,30 @@ function App() {
             key: 'year_return',
         },
         {
+            title: '最近一季收益',
+            dataIndex: 'quarter_return',
+            key: 'quarter_return',
+        },
+        {
+            title: '最近一月收益',
+            dataIndex: 'month_return',
+            key: 'month_return',
+        },
+        {
             title: '持仓股票数',
             dataIndex: 'cnt',
             key: 'cnt',
         },
+        {
+            title: '资金容量',
+            dataIndex: 'mall_capacity',
+            key: 'mall_capacity',
+        },
+        // {
+        //     title: '描述',
+        //     dataIndex: 'desc',
+        //     key: 'desc',
+        // },
     ];
 
     return <div>
