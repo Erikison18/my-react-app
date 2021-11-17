@@ -33,7 +33,8 @@ function App() {
                 myReturn = false;
             // } else if (item.score > 65 && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 40) {
             // } else if (item.score > 60) {
-            } else if (parseInt(item.live_annual_return) > 70 && parseInt(item.annual_return) > 70) {
+            // } else if (parseInt(item.cnt) > 10) {
+            } else if (parseInt(item.live_annual_return) > 90 && parseInt(item.annual_return) > 90) {
                 myReturn = true;
             } else {
                 myReturn = false;
