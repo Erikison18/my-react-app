@@ -37,7 +37,8 @@ function App() {
             // && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 60;
             // && item.deltaDay > 365;
             // if (parseInt(item.realAR) > 100 && parseInt(item.annual_return) > 100 && item.deltaDay > 180) {
-            if (parseInt(item.realAR) > 70 && parseInt(item.annual_return) > 70 && item.score > 60 && item.sharpe_ratio > 2 && item.deltaDay > 180) {
+            // if (parseInt(item.realAR) > 70 && parseInt(item.annual_return) > 70 && item.score > 60 && item.sharpe_ratio > 2 && item.deltaDay > 180) {
+            if (parseInt(item.realAR) > 80 && parseInt(item.annual_return) > 80 && item.deltaDay > 180 && item.sharpe_ratio > 2.5) {
                 myReturn = true;
             }
             return myReturn;

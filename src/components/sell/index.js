@@ -39,9 +39,9 @@ function App() {
             // } else if (parseInt(item.real_return) > 400) {
             // } else if (parseInt(item.live_excess_return) > 400) {
             // } else if (parseInt(item.year_return) > 100) {
-            // } else if (item.score > 60) {
+            // } else if (item.score > 75) {
             // } else if (parseInt(item.cnt) > 10) {
-            } else if (parseInt(item.live_annual_return) > 70 && parseInt(item.annual_return) > 70 && item.score > 60 && item.sharpe_ratio > 2) {
+            } else if (parseInt(item.live_annual_return) > 80 && parseInt(item.annual_return) > 80 && item.score > 65 && item.sharpe_ratio > 2.5) {
                 myReturn = true;
             } else {
                 myReturn = false;
