@@ -31,10 +31,17 @@ function App() {
             let dt = new Date("2014/11/01");
             if (d.getTime() > dt.getTime()) {
                 myReturn = false;
-            // } else if (item.score > 65 && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 40) {
+            // } else if (item.score > 65 && item.sharpe_ratio > 3 && parseFloat(item.max_withdraw) < 40) {
+            // } else if (item.score > 70 && item.sharpe_ratio > 3) {
+            // } else if (item.sharpe_ratio > 4) {
+            // } else if (parseInt(item.max_withdraw) < 20) {
+            // } else if (parseInt(item.real_days) > 1000) {
+            // } else if (parseInt(item.real_return) > 400) {
+            // } else if (parseInt(item.live_excess_return) > 400) {
+            // } else if (parseInt(item.year_return) > 100) {
             // } else if (item.score > 60) {
             // } else if (parseInt(item.cnt) > 10) {
-            } else if (parseInt(item.live_annual_return) > 90 && parseInt(item.annual_return) > 90) {
+            } else if (parseInt(item.live_annual_return) > 70 && parseInt(item.annual_return) > 70 && item.score > 60 && item.sharpe_ratio > 2) {
                 myReturn = true;
             } else {
                 myReturn = false;

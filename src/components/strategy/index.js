@@ -32,10 +32,15 @@ function App() {
             let realAR = ((Math.pow((parseInt(item.real_return) / 100) + 1, 365 / deltaDay) - 1) * 100).toFixed(2) + "%";
             item.deltaDay = deltaDay;
             item.realAR = realAR;
+            let myReturn = false;
             // return item.score > 60 && item.return_score > 90 && item.real_score > 80 && item.risk_score > 30 && item.stability_score > 30;
             // && item.sharpe_ratio > 2 && parseFloat(item.max_withdraw) < 60;
             // && item.deltaDay > 365;
-            return parseInt(item.realAR) > 100 && parseInt(item.annual_return) > 100 && item.deltaDay > 180;
+            // if (parseInt(item.realAR) > 100 && parseInt(item.annual_return) > 100 && item.deltaDay > 180) {
+            if (parseInt(item.realAR) > 70 && parseInt(item.annual_return) > 70 && item.score > 60 && item.sharpe_ratio > 2 && item.deltaDay > 180) {
+                myReturn = true;
+            }
+            return myReturn;
         });
         await dispatch({
             type: 'getList',
