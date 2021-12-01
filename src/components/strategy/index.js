@@ -21,7 +21,7 @@ function App() {
             order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return
             category: "stock",
             count: "1,20",
-            date_length: "1825,50000",
+            date_length: "3650,50000",
             annual_return: "0.5,100000000",
             asc: 0,
             _: 1634265880112,
