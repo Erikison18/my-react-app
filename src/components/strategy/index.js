@@ -16,12 +16,13 @@ function App() {
         setLoadingData(true)
         let getListPatch = await getData('/stock/strategy', {
             fmt: "json",
-            size: 200,
+            size: 20000,
             page: 1,
             order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return
             category: "stock",
-            count: "1,20",
-            date_length: "3650,50000",
+            // count: "1,20",
+            // count: "1,500",
+            date_length: "3000,50000", //1826, 3650
             annual_return: "0.5,100000000",
             asc: 0,
             _: 1634265880112,
@@ -38,9 +39,12 @@ function App() {
             // && item.deltaDay > 365;
             // if (parseInt(item.realAR) > 100 && parseInt(item.annual_return) > 100 && item.deltaDay > 180) {
             // if (parseInt(item.realAR) > 70 && parseInt(item.annual_return) > 70 && item.score > 60 && item.sharpe_ratio > 2 && item.deltaDay > 180) {
-            if (parseInt(item.realAR) > 80 && parseInt(item.annual_return) > 80 && item.deltaDay > 180 && item.sharpe_ratio > 2.5) {
+            if (parseInt(item.realAR) > 80 && parseInt(item.annual_return) > 80 && item.deltaDay > 365) {
                 myReturn = true;
             }
+            // if(item.liquidity_score < 85) {
+            //     myReturn = false;
+            // }
             return myReturn;
         });
         await dispatch({
@@ -126,6 +130,11 @@ function App() {
             title: '收益分数',
             dataIndex: 'return_score',
             key: 'return_score',
+        },
+        {
+            title: '流动性分数',
+            dataIndex: 'liquidity_score',
+            key: 'liquidity_score',
         },
     ];
 

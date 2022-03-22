@@ -57,6 +57,12 @@ class App extends React.Component {
                     <Menu.Item key="instruction">
                         <a href="#/instruction">instruction</a>
                     </Menu.Item>
+                    <Menu.Item key="performance">
+                        <a href="#/performance">performance</a>
+                    </Menu.Item>
+                    <Menu.Item key="rtquery">
+                        <a href="#/rtquery">rtquery</a>
+                    </Menu.Item>
                 </Menu>
                 <div className="page-content">
                     <Router />

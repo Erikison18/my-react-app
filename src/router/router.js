@@ -14,6 +14,8 @@ const Strategy = lazy(() => import('../components/strategy'));
 const Sell = lazy(() => import('../components/sell'));
 const TradeHistory = lazy(() => import('../components/tradeHistory'));
 const Instruction = lazy(() => import('../components/instruction'));
+const Performance = lazy(() => import('../components/performance'));
+const Rtquery = lazy(() => import('../components/rtquery'));
 
 class About extends React.Component{
     render() {
@@ -38,6 +40,8 @@ const BasicRoute = () => (
                 <Route exact path="/sell" component={Sell}/>
                 <Route exact path="/tradeHistory" component={TradeHistory}/>
                 <Route exact path="/instruction" component={Instruction}/>
+                <Route exact path="/performance" component={Performance}/>
+                <Route exact path="/rtquery" component={Rtquery}/>
             </Switch>
         </Suspense>
     </HashRouter>

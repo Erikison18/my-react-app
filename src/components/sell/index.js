@@ -28,7 +28,7 @@ function App() {
             console.log(item);
             let myReturn = false;
             let d = new Date(item.start_date);
-            let dt = new Date("2014/11/01");
+            let dt = new Date("2014/01/01");
             if (d.getTime() > dt.getTime()) {
                 myReturn = false;
             // } else if (item.score > 65 && item.sharpe_ratio > 3 && parseFloat(item.max_withdraw) < 40) {
@@ -41,7 +41,7 @@ function App() {
             // } else if (parseInt(item.year_return) > 100) {
             // } else if (item.score > 75) {
             // } else if (parseInt(item.cnt) > 10) {
-            } else if (parseInt(item.live_annual_return) > 70 && parseInt(item.annual_return) > 70 && item.score > 65 && item.sharpe_ratio > 2.5) {
+            } else if (parseInt(item.live_annual_return) > 80 && parseInt(item.annual_return) > 80 && item.score > 60 && item.sharpe_ratio > 0.5) {
                 myReturn = true;
             } else {
                 myReturn = false;
@@ -130,16 +130,6 @@ function App() {
             key: 'year_return',
         },
         {
-            title: '最近一季收益',
-            dataIndex: 'quarter_return',
-            key: 'quarter_return',
-        },
-        {
-            title: '最近一月收益',
-            dataIndex: 'month_return',
-            key: 'month_return',
-        },
-        {
             title: '持仓股票数',
             dataIndex: 'cnt',
             key: 'cnt',
@@ -148,6 +138,16 @@ function App() {
             title: '资金容量',
             dataIndex: 'mall_capacity',
             key: 'mall_capacity',
+        },
+        {
+            title: '最近一季收益',
+            dataIndex: 'quarter_return',
+            key: 'quarter_return',
+        },
+        {
+            title: '最近一月收益',
+            dataIndex: 'month_return',
+            key: 'month_return',
         },
         // {
         //     title: '描述',
