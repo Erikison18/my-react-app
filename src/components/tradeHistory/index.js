@@ -7,6 +7,17 @@ import { Button, Spin, Table } from 'antd';
 import "./index.scss"
 
 function App() {
+    Array.prototype.avg = function (call) {
+        let type = Object.prototype.toString.call(call);
+        let sum = 0;
+        if (type === '[object Function]') {
+            sum = this.reduce((pre, cur, i) => pre + call(cur, i), 0);
+        } else {
+            sum = this.reduce((pre, cur) => pre + cur);
+        }
+        return sum / this.length;
+    }
+
     const [loading, setLoadingData] = useState(false);
     // redux
     const list = useSelector(state => {
@@ -15,14 +26,23 @@ function App() {
     const list1 = useSelector(state => {
         return state.list1
     });
+    const kely = useSelector(state => {
+        return state.kely
+    });
+
     const dispatch = useDispatch();
     async function onClick() {
         setLoadingData(true)
         let getListPatch = await getData('/stock/strategy', {
             fmt: "json",
-            sid: "6005.R.142948956507590", //963.R.175377259140843、6005.R.151273379239841、6005.R.142948956507590、5598.R.96574918314022、1474054.R.221587820465062、515577.R.166374950966612
+            sid: "515577.R.166374950966612",
+            //963.R.175377259140843、6005.R.151273379239841、6005.R.142948956507590、
+            //5598.R.96574918314022、1474054.R.221587820465062、515577.R.166374950966612
+            //1012300.R.170580949014401、515577.R.166374950966612
             _: 1636450021980,
         });
+
+        // 计算历史调仓
         let meas_data = getListPatch.data.trade_history.sheet_data.meas_data;
         let row = getListPatch.data.trade_history.sheet_data.row;
         let filterData = meas_data[2].map((item, index)=> {
@@ -45,6 +65,7 @@ function App() {
             return once;
         });
 
+        // 计算持仓股
         let holdings_meas = getListPatch.data.holdings.sheet_data.meas_data;
         let holdings_col = getListPatch.data.holdings.sheet_data.col;
         let daily_chart = getListPatch.data.daily_chart.sheet_data.meas_data[1];
@@ -94,6 +115,60 @@ function App() {
         }
         console.log(holdingsData);
 
+        // 计算日凯利公式仓位
+        let daily_meas_return = getListPatch.data.daily_chart.sheet_data.meas_data[1];
+        let filterDailyDataUp = [];
+        let filterDailyDataDown = [];
+        for (let index = 0; index < daily_meas_return.length; index++) {
+            const el = daily_meas_return[index];
+            if (el > 0) {
+                filterDailyDataUp.push(el)
+            } else if(el < 0) {
+                filterDailyDataDown.push(el)
+            }
+        }
+        let kely_b = filterDailyDataUp.avg() / Math.abs(filterDailyDataDown.avg()); //日赔率
+        let kely_p = filterDailyDataUp.length / daily_meas_return.length //日成功概率
+        let d_kely = (kely_b * kely_p - (1 - kely_p)) / kely_b
+        console.log(kely_b, kely_p)
+        // 计算周凯利公式仓位
+        let week_meas_return = getListPatch.data.week_chart.sheet_data.meas_data[1];
+        let filterWeekDataUp = [];
+        let filterWeekDataDown = [];
+        for (let index = 0; index < week_meas_return.length; index++) {
+            const el = week_meas_return[index];
+            if (el > 0) {
+                filterWeekDataUp.push(el)
+            } else if(el < 0) {
+                filterWeekDataDown.push(el)
+            }
+        }
+        let kely_b1 = filterWeekDataUp.avg() / Math.abs(filterWeekDataDown.avg()); //日赔率
+        let kely_p1 = filterWeekDataUp.length / week_meas_return.length //日成功概率
+        let d_kely1 = (kely_b1 * kely_p1 - (1 - kely_p1)) / kely_b
+        console.log(kely_b1, kely_p1)
+        // 计算月凯利公式仓位
+        let month_meas_return = getListPatch.data.month_chart.sheet_data.meas_data[1];
+        let filterMonthDataUp = [];
+        let filterMonthDataDown = [];
+        for (let index = 0; index < month_meas_return.length; index++) {
+            const el = month_meas_return[index];
+            if (el > 0) {
+                filterMonthDataUp.push(el)
+            } else if(el < 0) {
+                filterMonthDataDown.push(el)
+            }
+        }
+        let kely_b2 = filterMonthDataUp.avg() / Math.abs(filterMonthDataDown.avg()); //赔率
+        let kely_p2 = filterMonthDataUp.length / month_meas_return.length //成功概率
+        let d_kely2 = (kely_b2 * kely_p2 - (1 - kely_p2)) / kely_b2
+        console.log(kely_b2, kely_p2)
+        // 计算次数凯利公式仓位
+        let kely_b3 = parseFloat(getListPatch.data.trade_summary.avg_positive_return) / Math.abs(parseFloat(getListPatch.data.trade_summary.avg_negative_return)); //赔率
+        let kely_p3 = parseFloat(getListPatch.data.trade_summary.win_ratio) / 100 //成功概率
+        let d_kely3 = (kely_b3 * kely_p3 - (1 - kely_p3)) / kely_b3
+        console.log(kely_b3, kely_p3)
+
         await dispatch({
             type: 'getList',
             payload: filterData
@@ -101,6 +176,15 @@ function App() {
         await dispatch({
             type: 'getList1',
             payload: holdingsData
+        });
+        await dispatch({
+            type: 'getKely',
+            payload: {
+                timer: d_kely3,
+                daily: d_kely,
+                week: d_kely1,
+                month: d_kely2
+            }
         });
         setLoadingData(false)
     }
@@ -238,6 +322,7 @@ function App() {
     return <div>
         <Button onClick={onClick}>onclick fetch</Button>
         <Spin spinning={loading}>
+            <h1>凯利公式：次数仓位{kely.timer * 100}%  /  日仓位{kely.daily * 100}%  /   周仓位{kely.week * 100}% /    月仓位{kely.month * 100}%</h1>
             <h2>持仓信息</h2>
             <Table dataSource={list1} columns={columns1} rowKey={columns => columns.index} pagination={{pageSize: 100}} scroll={{ y: 800 }}/>
             <h2>历史调仓</h2>

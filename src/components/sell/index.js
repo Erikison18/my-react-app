@@ -28,7 +28,7 @@ function App() {
             console.log(item);
             let myReturn = false;
             let d = new Date(item.start_date);
-            let dt = new Date("2014/01/01");
+            let dt = new Date("2013/01/01");
             if (d.getTime() > dt.getTime()) {
                 myReturn = false;
             // } else if (item.score > 65 && item.sharpe_ratio > 3 && parseFloat(item.max_withdraw) < 40) {
