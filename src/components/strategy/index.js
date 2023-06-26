@@ -16,15 +16,16 @@ function App() {
         setLoadingData(true)
         let getListPatch = await getData('/stock/strategy', {
             fmt: "json",
-            size: 20000,
-            page: 1,
-            order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return
-            category: "stock",
+            // size: 20000,
+            // page: 1,
+            // order: "score", //score,sharpe_ratio,annual_return,max_withdraw,real_return
+            // category: "stock",
             // count: "1,20",
             // count: "1,500",
-            date_length: "3000,50000", //1826, 3650
-            annual_return: "0.5,100000000",
-            asc: 0,
+            // date_length: "3650,50000", //1826, 3650
+            // annual_return: "0.5,100000000",
+            // asc: 0,
+            // sid: "480183.R.218942992095988",
             _: 1634265880112,
         });
         let filterData = getListPatch.data.strategy_list.filter((item)=> {
@@ -39,9 +40,12 @@ function App() {
             // && item.deltaDay > 365;
             // if (parseInt(item.realAR) > 100 && parseInt(item.annual_return) > 100 && item.deltaDay > 180) {
             // if (parseInt(item.realAR) > 70 && parseInt(item.annual_return) > 70 && item.score > 60 && item.sharpe_ratio > 2 && item.deltaDay > 180) {
-            if (parseInt(item.realAR) > 80 && parseInt(item.annual_return) > 80 && item.deltaDay > 365) {
+            if (parseInt(item.realAR) > 100 && parseInt(item.annual_return) > 100 && item.deltaDay > 365) {
                 myReturn = true;
             }
+            // if (parseInt(item.annual_return) > 200) {
+            //     myReturn = true;
+            // }
             // if(item.liquidity_score < 85) {
             //     myReturn = false;
             // }

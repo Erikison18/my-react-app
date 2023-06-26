@@ -25,23 +25,24 @@ function App() {
             _: 1636335971777,
         });
         let filterData = getListPatch.data.filter((item)=> {
-            console.log(item);
+            // console.log(item);
             let myReturn = false;
             let d = new Date(item.start_date);
-            let dt = new Date("2013/01/01");
+            let dt = new Date("2018/01/01");
             if (d.getTime() > dt.getTime()) {
                 myReturn = false;
             // } else if (item.score > 65 && item.sharpe_ratio > 3 && parseFloat(item.max_withdraw) < 40) {
             // } else if (item.score > 70 && item.sharpe_ratio > 3) {
             // } else if (item.sharpe_ratio > 4) {
             // } else if (parseInt(item.max_withdraw) < 20) {
-            // } else if (parseInt(item.real_days) > 1000) {
+            } else if (parseInt(item.real_days) < 365) {
+                myReturn = false;
             // } else if (parseInt(item.real_return) > 400) {
             // } else if (parseInt(item.live_excess_return) > 400) {
             // } else if (parseInt(item.year_return) > 100) {
-            // } else if (item.score > 75) {
+            // } else if (item.score > 75 && item.sharpe_ratio > 3.5) {
             // } else if (parseInt(item.cnt) > 10) {
-            } else if (parseInt(item.live_annual_return) > 80 && parseInt(item.annual_return) > 80 && item.score > 60 && item.sharpe_ratio > 0.5) {
+            } else if (parseInt(item.live_annual_return) > 80 && parseInt(item.annual_return) > 100 && item.score > 70 && item.sharpe_ratio > 2) {
                 myReturn = true;
             } else {
                 myReturn = false;
@@ -157,7 +158,7 @@ function App() {
     ];
 
     return <div>
-        <Button onClick={onClick}>onclick fetch</Button>
+        <Button onClick={onClick}>onclick fetch</Button><span>{list.length}</span>
         <Spin spinning={loading}>
             <Table dataSource={list} columns={columns} rowKey={columns => columns.id} pagination={{pageSize: 100}} scroll={{ y: 800 }}/>
         </Spin>
