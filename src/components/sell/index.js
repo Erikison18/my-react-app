@@ -24,6 +24,7 @@ function App() {
             asc: 0,
             _: 1636335971777,
         });
+        let ids = [];
         let filterData = getListPatch.data.filter((item)=> {
             // console.log(item);
             let myReturn = false;
@@ -42,13 +43,16 @@ function App() {
             // } else if (parseInt(item.year_return) > 100) {
             // } else if (item.score > 75 && item.sharpe_ratio > 3.5) {
             // } else if (parseInt(item.cnt) > 10) {
-            } else if (parseInt(item.live_annual_return) > 80 && parseInt(item.annual_return) > 100 && item.score > 70 && item.sharpe_ratio > 2) {
+            } else if (parseInt(item.live_annual_return) > 100 && parseInt(item.annual_return) > 100 && item.score > 70 && item.sharpe_ratio > 2) {
+                ids.push(item.id)
                 myReturn = true;
             } else {
                 myReturn = false;
             }
             return myReturn;
         });
+        console.log(filterData, 'filterData')
+        console.log(ids, 'ids')
         await dispatch({
             type: 'getList',
             payload: filterData
