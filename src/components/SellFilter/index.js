@@ -22,14 +22,16 @@ function App() {
     async function onClick() {
         setLoadingData(true);
         let ids = [
+            "1940772.R.254996897061838",
             "5598.R.162680572925185",
-            "1583483.R.237674887028068",
-            //   "1279778.R.246117453490728",
-            //   "1452889.R.244756075924928",
-            //   "28136.R.246264154553379",
-            //   "1695870.R.253658166732531",
-            //   "2032861.R.247270131703851",
-            //   "491607.R.247765135930511",
+              "1695870.R.253658166732531",
+              "1012300.R.170580949014401",
+              "1279778.R.246117453490728",
+              "1583483.R.237674887028068",
+              "2032861.R.247270131703851",
+              "1452889.R.244756075924928",
+              "28136.R.246264154553379",
+              "491607.R.247765135930511",
         ];
         let resList = [];
         for (let index = 0; index < ids.length; index++) {
@@ -121,10 +123,10 @@ function App() {
         },
         {
             title: "创新高最长天数",
-            dataIndex: "summary23",
-            key: "summary23",
+            dataIndex: "maxdrop_day",
+            key: "maxdrop_day",
             render: (text, row) => {
-                return <span>{row.summary2.sheet_data.meas_data[8][0]}</span>;
+                return <span>{row.trade_summary.maxdrop_day}</span>;
             },
         },
         {
@@ -160,11 +162,25 @@ function App() {
             },
         },
         {
+            title: "平均持仓仓位",
+            dataIndex: "avg_holding_position",
+            key: "avg_holding_position",
+            render: (text, row) => {
+                return <span>{row.trade_summary.avg_holding_position}</span>;
+            },
+        },
+        {
             title: "月收益中值",
             dataIndex: "monthly_statistics",
             key: "monthly_statistics",
             render: (text, row) => {
-                return <span>{row.monthly_statistics.sheet_data.meas_data[0][row.yearly_statistics.sheet_data.meas_data[0].length - 2] * 100}</span>;
+                return (
+                    <span>
+                        {row.monthly_statistics.sheet_data.meas_data[0][
+                            row.monthly_statistics.sheet_data.meas_data[0].length - 2
+                        ] * 100}
+                    </span>
+                );
             },
         },
         {
@@ -172,7 +188,14 @@ function App() {
             dataIndex: "monthly_statistics1",
             key: "monthly_statistics1",
             render: (text, row) => {
-                return <span>{row.monthly_statistics.sheet_data.meas_data[0][row.yearly_statistics.sheet_data.meas_data[0].length - 1] * 100}%</span>;
+                return (
+                    <span>
+                        {row.monthly_statistics.sheet_data.meas_data[0][
+                            row.monthly_statistics.sheet_data.meas_data[0].length - 1
+                        ] * 100}
+                        %
+                    </span>
+                );
             },
         },
         {
@@ -180,7 +203,14 @@ function App() {
             dataIndex: "yearly_statistics",
             key: "yearly_statistics",
             render: (text, row) => {
-                return <span>{row.yearly_statistics.sheet_data.meas_data[0][row.yearly_statistics.sheet_data.meas_data[0].length - 1] * 100}%</span>;
+                return (
+                    <span>
+                        {row.yearly_statistics.sheet_data.meas_data[0][
+                            row.yearly_statistics.sheet_data.meas_data[0].length - 1
+                        ] * 100}
+                        %
+                    </span>
+                );
             },
         },
         {
@@ -197,6 +227,38 @@ function App() {
             key: "price",
             render: (text, row) => {
                 return <span>{row.defn.price}</span>;
+            },
+        },
+        {
+            title: "回测开始日期",
+            dataIndex: "start_date",
+            key: "price",
+            render: (text, row) => {
+                return <span>{row.start_date}</span>;
+            },
+        },
+        {
+            title: "实盘开始日期",
+            dataIndex: "upd_date",
+            key: "price",
+            render: (text, row) => {
+                return <span>{row.upd_date}</span>;
+            },
+        },
+        {
+            title: "实盘天数",
+            dataIndex: "price",
+            key: "price",
+            render: (text, row) => {
+                return <span>{row.summary2.sheet_data.meas_data[8][0]}</span>;
+            },
+        },
+        {
+            title: "实盘收益",
+            dataIndex: "price",
+            key: "price",
+            render: (text, row) => {
+                return <span>{row.summary2.sheet_data.meas_data[9][0] * 100}%</span>;
             },
         },
     ];
