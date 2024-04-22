@@ -37,7 +37,8 @@ function App() {
         // 2024.01.02评测:回测6年+；实盘1年+；回测年化80%+；实盘年化80%+；
         // let ids = ['1987658.R.249303189570031', '1006112.R.247834653553473', '1006112.R.252759109103558', '1583483.R.237674887028068', '491607.R.247765135930511', '1741855.R.253795450734562', '2166209.R.254870750849633', '1279778.R.246117453490728', '1050839.R.235160344133016', '2032861.R.247270131703851', '1844365.R.250030975232771', '984097.R.244908735090784', '1937100.R.241474389636598', '521238.R.237836041811035', '1452889.R.244756075924928', '28136.R.246264154553379', '984097.R.244904327390000', '1431826.R.252709438301621', '1865972.R.248234624349974', '5598.R.162680572925185', '521238.R.251386427541501', '521238.R.253534111900120', '1695870.R.250128581892049', '1106650.R.231375607920330', '1012300.R.190764145094543', '204307.R.230228507909440', '1695870.R.253658166732531', '439009.R.250355459000786', '1012300.R.170580949014401', '5598.R.96574918314022', '1113127.R.257438533915168', '1070440.R.156880567349191', '1546304.R.247849136582766', '1006112.R.253290178395278', '1012300.R.188609638776192', '7501.R.176512303332120', '1012300.R.233869078314092', '1940772.R.254996897061838', '16705.R.257330102266758'];
         // 2024.01.03评测:回测6年+；实盘2年+；回测年化100%+；实盘年化80%+；
-        let ids = ['5598.R.162680572925185', '1012300.R.170580949014401', '5598.R.96574918314022', '1070440.R.156880567349191', '1012300.R.188609638776192'];
+        // let ids = ['5598.R.162680572925185', '1012300.R.170580949014401', '5598.R.96574918314022', '1070440.R.156880567349191', '1012300.R.188609638776192'];
+        let ids = ['5598.R.162680572925185', '1012300.R.170580949014401', '5598.R.96574918314022', '1070440.R.156880567349191'];
 
         let resList = [];
         for (let index = 0; index < ids.length; index++) {
@@ -105,24 +106,24 @@ function App() {
         },
         {
             title: "信息比率",
-            dataIndex: "summary2",
-            key: "summary2",
+            dataIndex: "summary2-1",
+            key: "summary2-1",
             render: (text, row) => {
                 return <span>{row.summary2.sheet_data.meas_data[5][0]}</span>;
             },
         },
         {
             title: "收益波动率",
-            dataIndex: "summary2",
-            key: "summary21",
+            dataIndex: "summary2-2",
+            key: "summary2-2",
             render: (text, row) => {
                 return <span>{row.summary2.sheet_data.meas_data[4][0] * 100}%</span>;
             },
         },
         {
             title: "Alpha",
-            dataIndex: "summary2",
-            key: "summary22",
+            dataIndex: "summary2-3",
+            key: "summary2-3",
             render: (text, row) => {
                 return <span>{row.summary2.sheet_data.meas_data[7][0] * 100}%</span>;
             },
@@ -137,8 +138,8 @@ function App() {
         },
         {
             title: "平均持有天数",
-            dataIndex: "trade_summary",
-            key: "trade_summary",
+            dataIndex: "avg_holding_days",
+            key: "avg_holding_days",
             render: (text, row) => {
                 return <span>{row.trade_summary.avg_holding_days}</span>;
             },
@@ -173,6 +174,22 @@ function App() {
             key: "avg_holding_position",
             render: (text, row) => {
                 return <span>{row.trade_summary.avg_holding_position}</span>;
+            },
+        },
+        {
+            title: "当前持仓仓位",
+            dataIndex: "position_chart",
+            key: "position_chart",
+            render: (text, row) => {
+                return (<span>{row.position_chart.sheet_data.meas_data[0][row.position_chart.sheet_data.meas_data[0].length - 1]}</span>);
+            },
+        },
+        {
+            title: "当前换股率",
+            dataIndex: "turnover_chart",
+            key: "turnover_chart",
+            render: (text, row) => {
+                return (<span>{row.turnover_chart.sheet_data.meas_data[0][row.turnover_chart.sheet_data.meas_data[0].length - 1]}</span>);
             },
         },
         {
@@ -238,7 +255,7 @@ function App() {
         {
             title: "回测开始日期",
             dataIndex: "start_date",
-            key: "price",
+            key: "start_date",
             render: (text, row) => {
                 return <span>{row.start_date}</span>;
             },
@@ -246,23 +263,23 @@ function App() {
         {
             title: "实盘开始日期",
             dataIndex: "upd_date",
-            key: "price",
+            key: "upd_date",
             render: (text, row) => {
                 return <span>{row.upd_date}</span>;
             },
         },
         {
             title: "实盘天数",
-            dataIndex: "price",
-            key: "price",
+            dataIndex: "summary2-10",
+            key: "summary2-10",
             render: (text, row) => {
                 return <span>{row.summary2.sheet_data.meas_data[8][0]}</span>;
             },
         },
         {
             title: "实盘收益",
-            dataIndex: "price",
-            key: "price",
+            dataIndex: "summary2-11",
+            key: "summary2-11",
             render: (text, row) => {
                 return <span>{row.summary2.sheet_data.meas_data[9][0] * 100}%</span>;
             },
