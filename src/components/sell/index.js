@@ -4,6 +4,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Button, Spin, Table } from 'antd';
 import "./index.scss"
 
+// 数字数组去掉最大值取平均
+const calculateAverageWithoutMax = (numbers) => {
+    // 对数组进行升序排序
+    numbers.sort((a, b) => a - b);
+    // 去掉最大值
+    numbers.pop();
+    // 计算剩余数字的平均值
+    const sum = numbers.reduce((total, num) => total + num, 0);
+    const average = sum / numbers.length;
+    return average;
+}
+
 function App() {
     const [loading, setLoadingData] = useState(false);
     const TableType = "lowVolatility"; // normaml 正常 || lowVolatility 小市值低波动 || stableDividend 稳定红利
@@ -75,9 +87,14 @@ function App() {
                     sid: e.id,
                     _: 1636450021980,
                 });
+                let arrYear = strategy.data.year_chart.sheet_data.meas_data[1];
+                arrYear.pop();
+                let avgYears = calculateAverageWithoutMax(arrYear);
+
                 return {
                     ...e,
-                    ...(strategy.data || {})
+                    ...(strategy.data || {}),
+                    avgYears,
                 };
             });
             // 使用async/await等待结果
@@ -311,6 +328,22 @@ function App() {
             },
         },
         {
+            title: "停牌股票比例",
+            dataIndex: "suspend_ratio",
+            key: "suspend_ratio",
+            render: (text, row) => {
+                return <span>{row.trade_summary.suspend_ratio}</span>;
+            },
+        },
+        {
+            title: "大盘择时",
+            dataIndex: "timing",
+            key: "timing",
+            render: (text, row) => {
+                return <span>{row.defn.timing}</span>;
+            },
+        },
+        {
             title: "平均交易收益",
             dataIndex: "avg_trade_return",
             key: "avg_trade_return",
@@ -355,6 +388,19 @@ function App() {
                         {row.monthly_statistics.sheet_data.meas_data[0][
                             row.monthly_statistics.sheet_data.meas_data[0].length - 2
                         ] * 100}
+                    </span>
+                );
+            },
+        },
+        {
+            title: "年收益去大取平均",
+            dataIndex: "avgYears",
+            key: "avgYears",
+            width: 100,
+            render: (text) => {
+                return (
+                    <span>
+                        {text * 100}
                     </span>
                 );
             },
