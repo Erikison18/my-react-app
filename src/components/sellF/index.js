@@ -71,8 +71,12 @@ function App() {
             return myReturn;
         });
         console.log(filterData, 'filterData')
-        console.log(ids, 'ids')
         ids = ['489244.R.262653878598528', '1183660.R.263132236046055', '1279778.R.263573089073150', '1300960.R.266930384285073', '1873010.R.263348862734458', '2196299.R.263639828193069', '2196299.R.263780747806428', '1987658.R.246118064821010', '1012300.R.233869078314092', '1992979.R.266436350686359']
+        // ids固定
+        filterData = filterData.filter((item) => {
+            return ids.includes(item.id);
+        })
+        console.log(filterData, 'filterData-filter')
 
         if (TableType === 'lowVolatility' || TableType === 'stableDividend') {
             // 调详情接口，取详情数据时

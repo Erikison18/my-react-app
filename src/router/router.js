@@ -12,6 +12,7 @@ const Faq = lazy(() => import('../components/faq'));
 const Redux = lazy(() => import('../components/redux'));
 const Strategy = lazy(() => import('../components/strategy'));
 const Sell = lazy(() => import('../components/sell'));
+const SellF = lazy(() => import('../components/sellF'));
 const SellFilter = lazy(() => import('../components/SellFilter'));
 const TradeHistory = lazy(() => import('../components/tradeHistory'));
 const Instruction = lazy(() => import('../components/instruction'));
@@ -39,6 +40,7 @@ const BasicRoute = () => (
                 <Route exact path="/about" component={About}/>
                 <Route exact path="/strategy" component={Strategy}/>
                 <Route exact path="/sell" component={Sell}/>
+                <Route exact path="/sellF" component={SellF}/>
                 <Route exact path="/sellFilter" component={SellFilter}/>
                 <Route exact path="/tradeHistory" component={TradeHistory}/>
                 <Route exact path="/instruction" component={Instruction}/>
