@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react'
 import { getData } from '../../common/js/fetch'
 import { useSelector, useDispatch } from 'react-redux'
@@ -38,7 +39,7 @@ function App() {
             _: 1636335971777,
         });
         let ids = [];
-        let filterData = (getListPatch.data || []).filter((item) => {
+        let filterData = (getListPatch.strategy_list || []).filter((item) => {
             let myReturn = false;
             let d = new Date(item.start_date);
             let dt = new Date("2018/01/01");
@@ -70,7 +71,17 @@ function App() {
             }
             return myReturn;
         });
-        ids = ['489244.R.262653878598528', '1183660.R.263132236046055', '1279778.R.263573089073150', '1300960.R.266930384285073', '1873010.R.263348862734458', '1012300.R.233869078314092', '1992979.R.266436350686359', '1987658.R.246118064821010']
+        // ids = ['489244.R.262653878598528', '1183660.R.263132236046055', '1279778.R.263573089073150', '1300960.R.266930384285073', '1873010.R.263348862734458', '1012300.R.233869078314092', '1992979.R.266436350686359', '1987658.R.246118064821010']
+        ids = [
+            '489244.R.262653878598528',
+            '1183660.R.263132236046055',
+            '1279778.R.263573089073150',
+            // '1300960.R.266930384285073',
+            '1873010.R.263348862734458',
+            '1012300.R.233869078314092',
+            '1992979.R.266436350686359',
+            '1987658.R.246118064821010'
+        ]
         // ids固定
         filterData = filterData.filter((item) => {
             return ids.includes(item.id);
