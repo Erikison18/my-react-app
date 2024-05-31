@@ -5,6 +5,7 @@ import {HashRouter, Route, Switch, Redirect} from 'react-router-dom';
 // import SeniorGuidance from "../components/seniorGuidance";
 const Sell = lazy(() => import('../components/sell'));
 const SellF = lazy(() => import('../components/sellF'));
+const LargeMarket = lazy(() => import('../components/LargeMarket'));
 const SellFilter = lazy(() => import('../components/SellFilter'));
 const TradeHistory = lazy(() => import('../components/tradeHistory'));
 const Instruction = lazy(() => import('../components/instruction'));
@@ -18,6 +19,7 @@ const BasicRoute = () => (
                 <Route exact path="/" render={() => <Redirect to="/sell" push />} />
                 <Route exact path="/sell" component={Sell}/>
                 <Route exact path="/sellF" component={SellF}/>
+                <Route exact path="/largeMarket" component={LargeMarket}/>
                 <Route exact path="/sellFilter" component={SellFilter}/>
                 <Route exact path="/tradeHistory" component={TradeHistory}/>
                 <Route exact path="/instruction" component={Instruction}/>
