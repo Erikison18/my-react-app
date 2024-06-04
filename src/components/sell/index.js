@@ -38,7 +38,7 @@ function App() {
             _: 1636335971777,
         });
         let ids = [];
-        let filterData = (getListPatch.data || []).filter((item) => {
+        let filterData = (getListPatch.data.strategy_list || []).filter((item) => {
             let myReturn = false;
             let d = new Date(item.start_date);
             let dt = new Date("2018/01/01");
