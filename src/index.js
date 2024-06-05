@@ -36,6 +36,9 @@ class App extends React.Component {
                     <Menu.Item key="sellFilter">
                         <a href="#/sellFilter">sellFilter</a>
                     </Menu.Item>
+                    <Menu.Item key="holdings">
+                        <a href="#/holdings">holdings</a>
+                    </Menu.Item>
                     <Menu.Item key="tradeHistory">
                         <a href="#/tradeHistory">tradeHistory</a>
                     </Menu.Item>
