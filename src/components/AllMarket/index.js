@@ -45,13 +45,16 @@ function App() {
                 myReturn = false;
             } else if (parseInt(item.real_days) < 30) {
                 myReturn = false;
-            } else if (parseInt(item.max_withdraw) > 50) {
+            } else if (parseInt(item.max_withdraw) > 40) {
                 myReturn = false;
             } else if (
                 // (item.tag.includes('大盘') || item.tag.includes('沪深300') || item.tag.includes('中证500') || item.tag.includes('价值')) &&
-                !item.tag.includes('小盘') &&
-                parseInt(item.live_annual_return) > 40 &&
-                parseInt(item.annual_return) > 50
+                item.tag.includes('大盘') &&
+                // !item.tag.includes('小盘') &&
+                // !item.tag.includes('次新') &&
+                // !item.tag.includes('ST') &&
+                // parseInt(item.live_annual_return) > 40 &&
+                parseInt(item.annual_return) > 40
                 // &&
                 // item.score > 75 &&
                 // item.sharpe_ratio > 1.5

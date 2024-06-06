@@ -9,13 +9,19 @@ function App() {
     // redux
     const strategyObject = {
         // 中神通-价值白马低波精选V1.11-3
-        // account_id: "21737",
-        // strategy_id: "1963841.R.300447300509430",
-        // strategy_name: "价值白马低波精选V1.11-3",
+        account_id: "21737",
+        strategy_id: "1963841.R.300447300509430",
+        strategy_name: "价值白马低波精选V1.11-3",
+
         // soontime-超级大盘4股再调优排房t
-        account_id: "16156",
-        strategy_id: "724575.R.294857625640072",
-        strategy_name: "超级大盘4股再调优排房t",
+        // account_id: "16156",
+        // strategy_id: "724575.R.294857625640072",
+        // strategy_name: "超级大盘4股再调优排房t",
+
+        // 在风中-小市值g1345
+        // account_id: "5200",
+        // strategy_id: "5598.R.162680572925185",
+        // strategy_name: "小市值g1345",
     }
     const account_id = strategyObject.account_id;//围观盘id
     const strategy_id = strategyObject.strategy_id;// 策略ids
