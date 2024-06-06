@@ -7,8 +7,19 @@ import "./index.scss";
 function App() {
     const [loading, setLoadingData] = useState(false);
     // redux
-    const account_id = "21737";//围观盘id
-    const strategy_id = "1963841.R.300447300509430";// 策略ids
+    const strategyObject = {
+        // 中神通-价值白马低波精选V1.11-3
+        // account_id: "21737",
+        // strategy_id: "1963841.R.300447300509430",
+        // strategy_name: "价值白马低波精选V1.11-3",
+        // soontime-超级大盘4股再调优排房t
+        account_id: "16156",
+        strategy_id: "724575.R.294857625640072",
+        strategy_name: "超级大盘4股再调优排房t",
+    }
+    const account_id = strategyObject.account_id;//围观盘id
+    const strategy_id = strategyObject.strategy_id;// 策略ids
+    const strategy_name = strategyObject.strategy_name;//策略名
     let total = 0;
     const [totalAmount, setTotalAmountData] = useState(0);
 
@@ -121,6 +132,7 @@ function App() {
     return (
         <div>
             <Button onClick={onClick}>onclick fetch</Button>
+            <p>strategy_name: {strategy_name}</p>
             <p>list.length:{list.length}</p>
             <p>totalAmount: {totalAmount}</p>
             <Spin spinning={loading}>
