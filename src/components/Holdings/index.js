@@ -38,6 +38,7 @@ function App() {
     const strategy_name = strategyObject.strategy_name;//策略名
     let total = 0;
     const [totalAmount, setTotalAmountData] = useState(0);
+    const [strategy_info, setStrategyInfoData] = useState({});
 
     const list = useSelector((state) => {
         return state.list;
@@ -69,6 +70,14 @@ function App() {
             type: 'getList',
             payload: filterData
         });
+
+
+        let _info = (getListPatch.data.holding_summary || []).find((item) => {
+            return item.strategy_id === strategy_id;
+        });
+        setStrategyInfoData(_info);
+        console.log(_info, "_info");
+
         setLoadingData(false)
     }
     let columns = [
@@ -151,6 +160,9 @@ function App() {
             <p>strategy_name: {strategy_name}</p>
             <p>list.length:{list.length}</p>
             <p>totalAmount: {totalAmount}</p>
+            <p>strategy_info仓位: {strategy_info.position}</p>
+            <p>strategy_info今日涨幅: {strategy_info.today_pct}</p>
+            
             <Spin spinning={loading}>
                 <Table
                     dataSource={list}
