@@ -18,8 +18,10 @@ function App() {
         // strategy_id: "724575.R.294857625640072",
         // strategy_name: "超级大盘4股再调优排房t",
 
-        // 不喜欢了可以改改-1800指数增强-0407
+        // 不喜欢了可以改改-2024-1800指数增强-0609-1
         // account_id: "5735",
+        // strategy_id: "12302.R.303151459701990",
+        // strategy_name: "2024-1800指数增强-0609-1",
         // strategy_id: "12302.R.297728398929369",
         // strategy_name: "1800指数增强-0407",
 
@@ -75,7 +77,7 @@ function App() {
         let _info = (getListPatch.data.holding_summary || []).find((item) => {
             return item.strategy_id === strategy_id;
         });
-        setStrategyInfoData(_info);
+        setStrategyInfoData(_info || {});
         console.log(_info, "_info");
 
         setLoadingData(false)

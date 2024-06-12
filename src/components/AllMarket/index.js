@@ -54,7 +54,7 @@ function App() {
                 // !item.tag.includes('次新') &&
                 // !item.tag.includes('ST') &&
                 // parseInt(item.live_annual_return) > 40 &&
-                parseInt(item.annual_return) > 40
+                parseInt(item.annual_return) > 45
                 // &&
                 // item.score > 75 &&
                 // item.sharpe_ratio > 1.5
