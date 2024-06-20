@@ -9,9 +9,9 @@ function App() {
     // redux
     const strategyObject = {
         // 中神通-价值白马低波精选V1.11-3
-        account_id: "21737",
-        strategy_id: "1963841.R.300447300509430",
-        strategy_name: "价值白马低波精选V1.11-3",
+        // account_id: "21737",
+        // strategy_id: "1963841.R.300447300509430",
+        // strategy_name: "价值白马低波精选V1.11-3",
 
         // soontime-超级大盘4股再调优排房t
         // account_id: "16156",
@@ -29,6 +29,11 @@ function App() {
         // account_id: "19795",
         // strategy_id: "2401863.R.300103034470417",
         // strategy_name: "大中盘为主无创四五股新国九",
+
+        // 宋公明-AH比价四五股2017对冲版
+        account_id: "18241",
+        strategy_id: "2318801.R.283480938374323",
+        strategy_name: "AH比价四五股2017对冲版",
 
         // 在风中-小市值g1345
         // account_id: "5200",

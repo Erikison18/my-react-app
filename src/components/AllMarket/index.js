@@ -43,18 +43,18 @@ function App() {
             let dt = new Date("2018/01/01");
             if (d.getTime() > dt.getTime()) {
                 myReturn = false;
-            } else if (parseInt(item.real_days) < 30) {
+            } else if (parseInt(item.real_days) < 10) {
                 myReturn = false;
             } else if (parseInt(item.max_withdraw) > 40) {
                 myReturn = false;
             } else if (
                 // (item.tag.includes('大盘') || item.tag.includes('沪深300') || item.tag.includes('中证500') || item.tag.includes('价值')) &&
-                item.tag.includes('大盘') &&
-                // !item.tag.includes('小盘') &&
-                // !item.tag.includes('次新') &&
-                // !item.tag.includes('ST') &&
+                // item.tag.includes('大盘') &&
+                !item.tag.includes('小盘') &&
+                !item.tag.includes('次新') &&
+                !item.tag.includes('ST') &&
                 // parseInt(item.live_annual_return) > 40 &&
-                parseInt(item.annual_return) > 45
+                parseInt(item.annual_return) > 50
                 // &&
                 // item.score > 75 &&
                 // item.sharpe_ratio > 1.5
