@@ -19,9 +19,9 @@ function App() {
         // strategy_name: "超级大盘4股再调优排房t",
 
         // 不喜欢了可以改改-2024-1800指数增强-0609-1
-        // account_id: "5735",
-        // strategy_id: "12302.R.303151459701990",
-        // strategy_name: "2024-1800指数增强-0609-1",
+        account_id: "5735",
+        strategy_id: "12302.R.303151459701990",
+        strategy_name: "2024-1800指数增强-0609-1",
         // strategy_id: "12302.R.297728398929369",
         // strategy_name: "1800指数增强-0407",
 
@@ -31,9 +31,9 @@ function App() {
         // strategy_name: "大中盘为主无创四五股新国九",
 
         // 宋公明-AH比价四五股2017对冲版
-        account_id: "18241",
-        strategy_id: "2318801.R.283480938374323",
-        strategy_name: "AH比价四五股2017对冲版",
+        // account_id: "18241",
+        // strategy_id: "2318801.R.283480938374323",
+        // strategy_name: "AH比价四五股2017对冲版",
 
         // 在风中-小市值g1345
         // account_id: "5200",
@@ -117,6 +117,12 @@ function App() {
             title: "行业",
             dataIndex: "group",
             key: "group",
+            width: 120,
+        },
+        {
+            title: "当日涨幅",
+            dataIndex: "today_pct",
+            key: "today_pct",
             width: 120,
         },
         {
