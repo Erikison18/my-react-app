@@ -170,12 +170,23 @@ function App() {
     return (
         <div>
             <Button onClick={onClick}>onclick fetch</Button>
-            <p>strategy_name: {strategy_name}</p>
+            <p>account_id: <a
+                href={`https://guorn.com/trader/home?live=1&id=${account_id}`}
+                target="_blank"
+            >
+                {account_id}
+            </a></p>
+            <p>strategy_name: <a
+                href={`https://guorn.com/stock/strategy?sid=${strategy_id}`}
+                target="_blank"
+            >
+                {strategy_name}
+            </a></p>
             <p>list.length:{list.length}</p>
             <p>totalAmount: {totalAmount}</p>
             <p>strategy_info仓位: {strategy_info.position}</p>
             <p>strategy_info今日涨幅: {strategy_info.today_pct}</p>
-            
+
             <Spin spinning={loading}>
                 <Table
                     dataSource={list}
