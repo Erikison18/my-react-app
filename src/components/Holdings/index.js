@@ -14,14 +14,14 @@ function App() {
         // strategy_name: "价值白马低波精选V1.11-3",
 
         // soontime-超级大盘4股再调优排房t
-        // account_id: "16156",
-        // strategy_id: "724575.R.294857625640072",
-        // strategy_name: "超级大盘4股再调优排房t",
+        account_id: "16156",
+        strategy_id: "724575.R.294857625640072",
+        strategy_name: "超级大盘4股再调优排房t",
 
         // 不喜欢了可以改改-2024-1800指数增强-0609-1
-        account_id: "5735",
-        strategy_id: "12302.R.303151459701990",
-        strategy_name: "2024-1800指数增强-0609-1",
+        // account_id: "5735",
+        // strategy_id: "12302.R.303151459701990",
+        // strategy_name: "2024-1800指数增强-0609-1",
         // strategy_id: "12302.R.297728398929369",
         // strategy_name: "1800指数增强-0407",
 
@@ -35,10 +35,21 @@ function App() {
         // strategy_id: "2318801.R.283480938374323",
         // strategy_name: "AH比价四五股2017对冲版",
 
+        // 希望之雨-希雨$中国核心资产5股
+        // account_id: "13823",
+        // strategy_id: "295937.R.292774604683421",
+        // strategy_name: "希雨$中国核心资产5股",
+
         // 在风中-小市值g1345
         // account_id: "5200",
         // strategy_id: "5598.R.162680572925185",
         // strategy_name: "小市值g1345",
+
+        // ksong-小市值20只（new2择时）
+        // account_id: "20910",
+        // strategy_id: "423.R.300930249180282",
+        // strategy_name: "小市值20只（new2择时）",
+
     }
     const account_id = strategyObject.account_id;//围观盘id
     const strategy_id = strategyObject.strategy_id;// 策略ids
