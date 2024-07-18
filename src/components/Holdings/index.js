@@ -15,8 +15,10 @@ function App() {
 
         // soontime-超级大盘4股再调优排房t
         account_id: "16156",
-        strategy_id: "724575.R.294857625640072",
-        strategy_name: "超级大盘4股再调优排房t",
+        strategy_id: "724575.R.306326684990285",
+        strategy_name: "超级大盘四股新国九排房含科",
+        // strategy_id: "724575.R.294857625640072",
+        // strategy_name: "超级大盘4股再调优排房t",
 
         // 不喜欢了可以改改-2024-1800指数增强-0609-1
         // account_id: "5735",
@@ -145,11 +147,26 @@ function App() {
             dataIndex: "today_pct",
             key: "today_pct",
             width: 120,
+            render: (text, record) => {
+                return record['today_pct'] * 100;
+            },
         },
         {
             title: "价格",
             dataIndex: "price",
             key: "price",
+            width: 120,
+        },
+        // {
+        //     title: "持有股数(other)",
+        //     dataIndex: "other",
+        //     key: "other",
+        //     width: 120,
+        // },
+        {
+            title: "持有市值",
+            dataIndex: "value",
+            key: "value",
             width: 120,
         },
         {
@@ -162,7 +179,7 @@ function App() {
             width: 160,
         },
         {
-            title: "持有市值",
+            title: "持有市值(计算)",
             dataIndex: "ticker1",
             key: "ticker1",
             width: 120,
@@ -171,7 +188,7 @@ function App() {
             },
         },
         {
-            title: "持有比例",
+            title: "持有比例(计算)",
             dataIndex: "ticker2",
             key: "ticker2",
             width: 120,
@@ -203,10 +220,10 @@ function App() {
             >
                 {strategy_name}
             </a></p>
-            <p>list.length:{list.length}</p>
+            <p>list.length:{list.length - 1}</p>
             <p>totalAmount: {totalAmount}</p>
-            <p>strategy_info仓位: {strategy_info.position}</p>
-            <p>strategy_info今日涨幅: {strategy_info.today_pct}</p>
+            <p>strategy_info仓位: {strategy_info.position * 100}</p>
+            <p>strategy_info今日涨幅: {strategy_info.today_pct * 100}</p>
 
             <Spin spinning={loading}>
                 <Table
