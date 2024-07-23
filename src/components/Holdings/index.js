@@ -14,28 +14,18 @@ function App() {
         // strategy_name: "价值白马低波精选V1.11-3",
 
         // soontime-超级大盘4股再调优排房t
-        account_id: "16156",
-        strategy_id: "724575.R.306326684990285",
-        strategy_name: "超级大盘四股新国九排房含科",
+        // account_id: "16156",
+        // strategy_id: "724575.R.306326684990285",
+        // strategy_name: "超级大盘四股新国九排房含科",
         // strategy_id: "724575.R.294857625640072",
         // strategy_name: "超级大盘4股再调优排房t",
 
         // 不喜欢了可以改改-2024-1800指数增强-0609-1
-        // account_id: "5735",
-        // strategy_id: "12302.R.303151459701990",
-        // strategy_name: "2024-1800指数增强-0609-1",
+        account_id: "5735",
+        strategy_id: "12302.R.303151459701990",
+        strategy_name: "2024-1800指数增强-0609-1",
         // strategy_id: "12302.R.297728398929369",
         // strategy_name: "1800指数增强-0407",
-
-        // 金玉昌明-大中盘为主无创四五股新国九
-        // account_id: "19795",
-        // strategy_id: "2401863.R.300103034470417",
-        // strategy_name: "大中盘为主无创四五股新国九",
-
-        // 宋公明-AH比价四五股2017对冲版
-        // account_id: "18241",
-        // strategy_id: "2318801.R.283480938374323",
-        // strategy_name: "AH比价四五股2017对冲版",
 
         // 希望之雨-希雨$中国核心资产5股
         // account_id: "13823",
@@ -51,6 +41,16 @@ function App() {
         // account_id: "21757",
         // strategy_id: "1006112.R.279887763174985",
         // strategy_name: "科技电子赛道10股2019",
+
+        // 金玉昌明-大中盘为主无创四五股新国九
+        // account_id: "19795",
+        // strategy_id: "2401863.R.300103034470417",
+        // strategy_name: "大中盘为主无创四五股新国九",
+
+        // 宋公明-AH比价四五股2017对冲版
+        // account_id: "18241",
+        // strategy_id: "2318801.R.283480938374323",
+        // strategy_name: "AH比价四五股2017对冲版",
 
         // 在风中-小市值g1345
         // account_id: "5200",
