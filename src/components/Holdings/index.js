@@ -238,7 +238,7 @@ function App() {
                 <Table
                     dataSource={list}
                     columns={columns}
-                    rowKey={(columns) => columns.id}
+                    rowKey={(columns) => columns.name}
                     pagination={{ pageSize: 100 }}
                     scroll={{ y: 800 }}
                 />
