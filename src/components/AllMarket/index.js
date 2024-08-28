@@ -68,6 +68,11 @@ function App() {
             } else if (parseInt(item.annual_return) > 40) {
                 ids.push(item.id);
                 myReturn = true;
+
+            // if (((item.tag.includes('大盘') || item.tag.includes('沪深300')) && item.cnt >= 8 && parseInt(item.annual_return) > 20)) {
+            //     myReturn = true;
+            // if ((item.tag.includes('小盘') && item.cnt >= 10 && parseInt(item.annual_return) > 80)) {
+            //     myReturn = true;
             } else {
                 myReturn = false;
             }
