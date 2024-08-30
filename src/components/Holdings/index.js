@@ -14,16 +14,16 @@ function App() {
         // strategy_name: "价值白马低波精选V1.11-3",
 
         // soontime-超级大盘4股再调优排房t
-        account_id: "16156",
-        strategy_id: "724575.R.306326684990285",
-        strategy_name: "超级大盘四股新国九排房含科",
+        // account_id: "16156",
+        // strategy_id: "724575.R.306326684990285",
+        // strategy_name: "超级大盘四股新国九排房含科",
         // strategy_id: "724575.R.294857625640072",
         // strategy_name: "超级大盘4股再调优排房t",
 
         // 不喜欢了可以改改-2024-1800指数增强-0609-1
-        // account_id: "5735",
-        // strategy_id: "12302.R.303151459701990",
-        // strategy_name: "2024-1800指数增强-0609-1",
+        account_id: "5735",
+        strategy_id: "12302.R.303151459701990",
+        strategy_name: "2024-1800指数增强-0609-1",
         // strategy_id: "12302.R.297728398929369",
         // strategy_name: "1800指数增强-0407",
 
@@ -31,6 +31,11 @@ function App() {
         // account_id: "13823",
         // strategy_id: "295937.R.292774604683421",
         // strategy_name: "希雨$中国核心资产5股",
+
+        // 差不多就行-5支中小狮子
+        // account_id: "21608",
+        // strategy_id: "146303.R.281801103402666",
+        // strategy_name: "5支中小狮子",
 
         // soontime-小舞-长乐未央
         // account_id: "21845",
