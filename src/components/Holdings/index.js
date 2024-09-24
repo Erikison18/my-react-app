@@ -14,8 +14,10 @@ function App() {
         {
             // soontime-超级大盘4股再调优排房t
             account_id: "16156",
-            value: "724575.R.306326684990285",
-            label: "超级大盘四股新国九排房含科",
+            value: "724575.R.312204969173140",
+            label: "超级大盘二三股",
+            // value: "724575.R.306326684990285",
+            // label: "超级大盘四股新国九排房含科",
             // strategy_id: "724575.R.294857625640072",
             // strategy_name: "超级大盘4股再调优排房t",
         }, {
@@ -99,7 +101,7 @@ function App() {
     };
 
     // 默认选中
-    const defaultValue = "724575.R.306326684990285"
+    const defaultValue = strategyList[0].value
     useEffect(() => {
         // 模拟页面加载的异步操作，比如数据获取
         setTimeout(() => {

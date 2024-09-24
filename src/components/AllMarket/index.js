@@ -65,14 +65,14 @@ function App() {
             // ) {
             if (parseInt(item.max_withdraw) > 20) {
                 myReturn = false;
-            } else if (parseInt(item.annual_return) > 40 && item.score > 75) {
+            } else if (parseInt(item.annual_return) > 80 && item.score > 75) {
                 ids.push(item.id);
                 myReturn = true;
 
-            // if (((item.tag.includes('大盘') || item.tag.includes('沪深300')) && item.cnt >= 3 && item.cnt <= 5 && parseInt(item.annual_return) > 30 && item.score > 75)) {
-            //     myReturn = true;
-            // if ((item.tag.includes('小盘') && item.cnt >= 3 && item.cnt <= 5 && parseInt(item.annual_return) > 100 && item.score > 75)) {
-            //     myReturn = true;
+                // if (((item.tag.includes('大盘') || item.tag.includes('沪深300')) && item.cnt >= 3 && item.cnt <= 5 && parseInt(item.annual_return) > 30 && item.score > 75)) {
+                //     myReturn = true;
+                // if ((item.tag.includes('小盘') && item.cnt >= 3 && item.cnt <= 5 && parseInt(item.annual_return) > 100 && item.score > 75)) {
+                //     myReturn = true;
             } else {
                 myReturn = false;
             }
@@ -96,6 +96,15 @@ function App() {
                 sid: e.id,
                 _: 1636450021980,
             });
+            console.log(strategy.data)
+            if (strategy.data.redirect) {
+                // 有重定向
+                strategy = await getData(strategy.data.redirect, {
+                    fmt: "json",
+                    sid: e.id,
+                    _: 1636450021980,
+                });
+            }
             let arrYear = strategy.data.year_chart.sheet_data.meas_data[1];
             arrYear.pop();
             let avgYears = calculateAverageWithoutMax(arrYear);
