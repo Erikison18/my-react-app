@@ -16,6 +16,7 @@ function App() {
             account_id: "16156",
             value: "724575.R.312204969173140",
             label: "超级大盘二三股",
+            time: "09:45"
             // value: "724575.R.306326684990285",
             // label: "超级大盘四股新国九排房含科",
             // strategy_id: "724575.R.294857625640072",
@@ -25,6 +26,7 @@ function App() {
             account_id: "5735",
             value: "12302.R.311780362614302",
             label: "2025-1800指数增强择时-0918",
+            time: "日均成交价"
             // value: "12302.R.303151459701990",
             // label: "2024-1800指数增强-0609-1",
             // strategy_id: "12302.R.297728398929369",
@@ -34,16 +36,31 @@ function App() {
             account_id: "13823",
             value: "295937.R.292774604683421",
             label: "希雨$中国核心资产5股",
+            time: "09:40"
         }, {
             // 差不多就行-5支中小狮子
             account_id: "21608",
             value: "146303.R.281801103402666",
             label: "5支中小狮子",
+            time: "14:30"
+        }, {
+            // 差不多就行-5支中小狮子
+            account_id: "21608",
+            value: "146303.R.295792952469616",
+            label: "全市场5支踩涨停1",
+            time: "14:30"
         }, {
             // 郭丰铭-小市值希望之窗
             account_id: "5690",
             value: "19618.R.204022637009833",
             label: "小市值希望之窗",
+            time: "13:15"
+        }, {
+            // 在风中-小市值g1345
+            account_id: "5200",
+            value: "5598.R.162680572925185",
+            label: "小市值g1345",
+            time: "13:45"
         }
     ];
     // redux
@@ -82,17 +99,13 @@ function App() {
     // strategy_id: "2318801.R.283480938374323",
     // strategy_name: "AH比价四五股2017对冲版",
 
-    // 在风中-小市值g1345
-    // account_id: "5200",
-    // strategy_id: "5598.R.162680572925185",
-    // strategy_name: "小市值g1345",
-
     // ksong-小市值20只（new2择时）
     // account_id: "20910",
     // strategy_id: "423.R.300930249180282",
     // strategy_name: "小市值20只（new2择时）",
     // }
     let total = 0;
+    const [selected, setSelectedData] = useState({});
     const [totalAmount, setTotalAmountData] = useState(0);
     const [strategy_info, setStrategyInfoData] = useState({});
     const [strategyObject, setStrategyObjectData] = useState({});
@@ -103,8 +116,9 @@ function App() {
     const dispatch = useDispatch();
 
     const handleChange = (value) => {
-        let selected = strategyList.find(e => e.value === value) || {};
-        setStrategyObjectData({ ...selected, strategy_id: selected.value, strategy_name: selected.label })
+        let select = strategyList.find(e => e.value === value) || {};
+        setSelectedData(select)
+        setStrategyObjectData({ ...select, strategy_id: select.value, strategy_name: select.label })
     };
 
     // 默认选中
@@ -113,7 +127,7 @@ function App() {
         // 模拟页面加载的异步操作，比如数据获取
         setTimeout(() => {
             handleChange(defaultValue)
-        }, 1000); // 假设页面加载完成需要3秒
+        }, 100); // 假设页面加载完成需要3秒
     }, []);
 
     async function onClick() {
@@ -268,6 +282,7 @@ function App() {
             >
                 {strategyObject.strategy_name}
             </a></p>
+            <p>selected.time:{selected.time}</p>
             <p>list.length:{list.length - 1}</p>
             <p>totalAmount: {totalAmount}</p>
             <p>strategy_info仓位: {strategy_info.position * 100}</p>
