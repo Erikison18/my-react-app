@@ -9,6 +9,7 @@ const AllMarket = lazy(() => import('../components/AllMarket'));
 const LargeMarket = lazy(() => import('../components/LargeMarket'));
 const SellFilter = lazy(() => import('../components/SellFilter'));
 const Holdings = lazy(() => import('../components/Holdings'));
+const Position = lazy(() => import('../components/position'));
 const TradeHistory = lazy(() => import('../components/tradeHistory'));
 const Instruction = lazy(() => import('../components/instruction'));
 const Performance = lazy(() => import('../components/performance'));
@@ -24,6 +25,7 @@ const BasicRoute = () => (
                 <Route exact path="/allMarket" component={AllMarket}/>
                 <Route exact path="/largeMarket" component={LargeMarket}/>
                 <Route exact path="/holdings" component={Holdings}/>
+                <Route exact path="/position" component={Position}/>
                 <Route exact path="/sellFilter" component={SellFilter}/>
                 <Route exact path="/tradeHistory" component={TradeHistory}/>
                 <Route exact path="/instruction" component={Instruction}/>

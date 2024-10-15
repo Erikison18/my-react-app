@@ -13,6 +13,8 @@ function App() {
     let strategyList = [
         {
             // soontime-超级大盘4股再调优排房t
+            user_name: "soontime",
+            uid: "724575",
             account_id: "16156",
             value: "724575.R.312204969173140",
             label: "超级大盘二三股",
@@ -23,6 +25,8 @@ function App() {
             // strategy_name: "超级大盘4股再调优排房t",
         }, {
             // 不喜欢了可以改改-2024-1800指数增强-0609-1
+            user_name: "不喜欢了可以改改",
+            uid: "12302",
             account_id: "5735",
             value: "12302.R.311780362614302",
             label: "2025-1800指数增强择时-0918",
@@ -33,30 +37,34 @@ function App() {
             // strategy_name: "1800指数增强-0407",
         }, {
             // 希望之雨-希雨$中国核心资产5股
+            user_name: "希望之雨",
+            uid: "295937",
             account_id: "13823",
             value: "295937.R.292774604683421",
             label: "希雨$中国核心资产5股",
             time: "09:40"
         }, {
             // 差不多就行-5支中小狮子
+            user_name: "差不多就行",
+            uid: "146303",
             account_id: "21608",
-            value: "146303.R.281801103402666",
-            label: "5支中小狮子",
-            time: "14:30"
-        }, {
-            // 差不多就行-5支中小狮子
-            account_id: "21608",
+            // value: "146303.R.281801103402666",
+            // label: "5支中小狮子",
             value: "146303.R.295792952469616",
             label: "全市场5支踩涨停1",
             time: "14:30"
         }, {
             // 郭丰铭-小市值希望之窗
+            user_name: "郭丰铭",
+            uid: "19618",
             account_id: "5690",
             value: "19618.R.204022637009833",
             label: "小市值希望之窗",
             time: "13:15"
         }, {
             // 在风中-小市值g1345
+            user_name: "在风中",
+            uid: "5598",
             account_id: "5200",
             value: "5598.R.162680572925185",
             label: "小市值g1345",
@@ -105,7 +113,6 @@ function App() {
     // strategy_name: "小市值20只（new2择时）",
     // }
     let total = 0;
-    const [selected, setSelectedData] = useState({});
     const [totalAmount, setTotalAmountData] = useState(0);
     const [strategy_info, setStrategyInfoData] = useState({});
     const [strategyObject, setStrategyObjectData] = useState({});
@@ -117,7 +124,6 @@ function App() {
 
     const handleChange = (value) => {
         let select = strategyList.find(e => e.value === value) || {};
-        setSelectedData(select)
         setStrategyObjectData({ ...select, strategy_id: select.value, strategy_name: select.label })
     };
 
@@ -270,6 +276,12 @@ function App() {
                 options={strategyList}
             />
             <Button onClick={onClick}>onclick fetch</Button>
+            <p>user_name: <a
+                href={`https://guorn.com/user/home?uid=${strategyObject.uid}&page=talkall`}
+                target="_blank"
+            >
+                {strategyObject.user_name}
+            </a></p>
             <p>account_id: <a
                 href={`https://guorn.com/trader/home?live=1&id=${strategyObject.account_id}`}
                 target="_blank"
@@ -282,7 +294,7 @@ function App() {
             >
                 {strategyObject.strategy_name}
             </a></p>
-            <p>selected.time:{selected.time}</p>
+            <p>time:{strategyObject.time}</p>
             <p>list.length:{list.length - 1}</p>
             <p>totalAmount: {totalAmount}</p>
             <p>strategy_info仓位: {strategy_info.position * 100}</p>
