@@ -17,7 +17,7 @@ function App() {
         let filterData = [
             '423.R.79459948017710',
             '19618.R.204022637009833',
-            // '146303.R.281801103402666',
+            '146303.R.281801103402666',
             '146303.R.295792952469616',
             '260679.R.277407750716702',
             '828326.R.289293697353718',
@@ -26,7 +26,7 @@ function App() {
             '2156774.R.271699894333487',
             '2211548.R.305049047131441',
             '2324734.R.302476411904396',
-            // '2451418.R.305501482507007',
+            '2451418.R.305501482507007',
         ]
         console.log(filterData, "filterData");
 
@@ -43,7 +43,7 @@ function App() {
             let strategy = await getData("/stock/strategy", {
                 fmt: "json",
                 sid: id,
-                _: 1636450021980,
+                _: 1733462294511,
             });
             console.log(strategy.data)
             if (strategy.data.redirect) {
@@ -51,7 +51,7 @@ function App() {
                 strategy = await getData(strategy.data.redirect, {
                     fmt: "json",
                     sid: id,
-                    _: 1636450021980,
+                    _: 1733462294511,
                 });
             }
 
