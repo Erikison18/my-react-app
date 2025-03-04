@@ -20,12 +20,13 @@ function App() {
             label: "小市值希望之窗",
             time: "13:15"
         }, {
-            // 小舞靓化-【科技赛道】10股
+            // https://guorn.com/stock/strategy?sid=2451418.R.316688813035409
+            // 小舞靓化- 小舞-电子自用
             user_name: "小舞靓化",
             uid: "2451418",
             account_id: "22105",
-            value: "2451418.R.321714895419030",
-            label: "【科技赛道】10股",
+            value: "2451418.R.316688813035409",
+            label: "小舞-电子自用",
             time: "14:00"
         }, {
             // 在风中-小市值g1345
@@ -42,7 +43,7 @@ function App() {
             account_id: "5200",
             value: "5598.R.301044015109487",
             label: "小市值-实时G",
-            time: "13:45"
+            time: "14:30"
         }, {
             // ijonas-行业妖走
             user_name: "ijonas",
