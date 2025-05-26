@@ -63,15 +63,15 @@ function App() {
             //     // item.score > 75 &&
             //     item.sharpe_ratio > 1.5
             // ) {
-            if (parseInt(item.max_withdraw) > 25) {
+            if (parseInt(item.max_withdraw) > 30) {
                 myReturn = false;
             } else if (parseInt(item.annual_return) > 100 && item.score > 80) {
                 ids.push(item.id);
                 myReturn = true;
-            // } else if (((item.tag.includes('大盘') || item.tag.includes('沪深300') || item.tag.includes('中证500')) && parseInt(item.annual_return) > 40)) {
-            //     myReturn = true;
-            // } else if (((item.tag.includes('小盘') || item.tag.includes('次新')) && item.cnt >= 3 && item.cnt <= 5 && parseInt(item.annual_return) > 100 && item.score > 75)) {
-            //     myReturn = true;
+                // } else if (((item.tag.includes('大盘') || item.tag.includes('沪深300') || item.tag.includes('中证500')) && parseInt(item.annual_return) > 40)) {
+                //     myReturn = true;
+                // } else if (((item.tag.includes('小盘') || item.tag.includes('次新')) && item.cnt >= 3 && item.cnt <= 5 && parseInt(item.annual_return) > 100 && item.score > 75)) {
+                //     myReturn = true;
             } else {
                 myReturn = false;
             }
