@@ -63,7 +63,7 @@ function App() {
             //     // item.score > 75 &&
             //     item.sharpe_ratio > 1.5
             // ) {
-            if (parseInt(item.max_withdraw) > 30) {
+            if (parseInt(item.max_withdraw) > 25) {
                 myReturn = false;
             } else if (parseInt(item.annual_return) > 100 && item.score > 80) {
                 ids.push(item.id);
