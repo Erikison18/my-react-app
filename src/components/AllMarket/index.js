@@ -65,7 +65,7 @@ function App() {
             // ) {
             if (parseInt(item.max_withdraw) > 25) {
                 myReturn = false;
-            } else if (parseInt(item.annual_return) > 100 && item.score > 80) {
+            } else if (parseInt(item.annual_return) > 90 && item.score > 84) {
                 ids.push(item.id);
                 myReturn = true;
                 // } else if (((item.tag.includes('大盘') || item.tag.includes('沪深300') || item.tag.includes('中证500')) && parseInt(item.annual_return) > 40)) {
